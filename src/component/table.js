@@ -4,13 +4,13 @@ import Tabledatarow from './Tabledatarow';
 class Table extends Component {
     
     mappingDataUser = () => this.props.dataUser.map((value,key) => (
-        
+        //trong file json co nhưng phan tu nao thi` gan vao cung value de doc du lieu tu file json tra ve
         <Tabledatarow 
         key={key}
-        id={value.id}
-        ten={value.name}
-        age={value.age}
-        email={value.email}
+        id={value.userId}
+        ten={value.id}
+        age={value.title}
+        email={value.body}
          /> 
     ))
 //key la phan tu. value la` gia tri ben trong moi phan tu
