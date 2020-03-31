@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import '../App.css';
-import Headerweb from './headerweb';
-import Table from './table';
-import Search from './Search';
+// import Headerweb from './headerweb';
+// import Table from './table';
+// import Search from './Search';
+// import Insert from './Insert';
+import ReactRouter from '../reactrouter/ReactRouter';
+import Footer from '../layout/Footer';
+import Header from '../layout/Header';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -44,7 +49,7 @@ class App extends Component {
 
   getTextSearch = (dl) => {
     this.setState({//gan du lieu ma` minh` da nhap vao o search vao` (dl)
-      searchText: dl 
+      searchText: dl
     })
     //console.log(this.state.searchText);
   }
@@ -56,19 +61,28 @@ class App extends Component {
     //console.log(this.state.listdata);
     //console.log(this.state.dl);
     var ketqua = []; // khai bao 1 mang ket qua
-    this.state.listdata.forEach((item)=>{ // quet toan bo du lieu data va dua vao 1 cai item tuy` vao` phan` tu dua vao
-      if(item.title.indexOf(this.state.searchText) !== -1) { // neu indexOf khac -1 tuc la co phan tu
+    this.state.listdata.forEach((item) => { // quet toan bo du lieu data va dua vao 1 cai item tuy` vao` phan` tu dua vao
+      if (item.title.indexOf(this.state.searchText) !== -1) { // neu indexOf khac -1 tuc la co phan tu
         ketqua.push(item); // dua vao mang ket qua
       }
     })
-    
-    
+
+
     return (
       <div>
-        <Headerweb />
+        {/* <Headerweb />
         <Search checkConnectProps={(dl) => this.getTextSearch(dl)} />
-        <Table dataUser={ketqua} /> 
+        <p>Function Add</p>
+       <Insert/> 
+        <Table dataUser={ketqua} />  */}
         {/* dua vao mang dataUser de hien thi ket qua search */}
+        {/* <Login/> */}
+        <Router>
+          <Header />
+          <ReactRouter />
+          <Footer />
+        </Router>
+
       </div>
     );
   }
