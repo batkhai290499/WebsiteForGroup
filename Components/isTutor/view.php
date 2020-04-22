@@ -45,7 +45,7 @@ if (!isset($_SESSION['username'])) {
     <link href="../../assets/css/app-style.css" rel="stylesheet" />
     <!-- Dropzone css -->
     <link href="../../assets/plugins/dropzone/css/dropzone1.css" rel="stylesheet" type="text/css">
-    <link href="./tem.css" rel="stylesheet" />
+    <link href="./tem1.css" rel="stylesheet" />
 </head>
 
 
@@ -219,7 +219,7 @@ if (!isset($_SESSION['username'])) {
                                                     <td class="column1"><?= $rows[$i][0] ?></td>
                                                     <td class="column2"><?= $rows[$i][1] ?></td>
                                                     <td class="column3"><?= $rows[$i][2] ?></td>
-                                                    <td class="column5"><button type="button" class="btn btn-light waves-effect waves-light m-1" onclick=""> <i class="fa fa fa-envelope-o"></i> <a href="chat.php?id=<?= $rows[$i][2] ?>">Chat</a> </button></td>
+                                                    <td class="column5"><button type="button" class="btn btn-light waves-effect waves-light m-1" > <i class="fa fa fa-envelope-o"></i> <a href="chat.php?id=<?= $rows[$i][2] ?>">Chat</a> </button></td>
                                                 </tr>
                                             </div>
                                         <?php

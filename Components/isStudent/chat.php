@@ -213,67 +213,37 @@ if (!isset($_SESSION['username'])) {
                                 require("../database.php");
                                 if (isset($_GET["id"])) {
                                     $id = $_GET["id"];
+                                    $acc = $_SESSION['accountID'];
                                 }
-                                $sql = "SELECT * FROM `message` WHERE messTo = " . $id;
-                                //echo $sql;
+                                $sql = "SELECT * FROM message WHERE messTo IN ($acc,$id) AND messFrom IN ($id,$acc) ORDER BY time ASC";
+                                echo $sql;
                                 $rows = query($sql);
                                 for ($i = 0; $i < count($rows); $i++) {
                                 ?>
-                                    <div class="containertext darker">
-                                        <img src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="Avatar" class="right" style="width:100%;">
-                                        <p style="float: right"><?= $rows[$i][3] ?></p>
-                                        <span class="time-right" style="float: left"><?= $rows[$i][4] ?></span>
-                                    </div>
-                                <?php
-                                }
-                                $sql1 = "Select * from message where messFrom = " . $_SESSION['accountID'];
-                                //echo $sql;
-                                $rows1 = query($sql1);
-                                for ($i = 0; $i < count($rows1); $i++) {
-                                ?>
-                                    <div class="containertext">
+
+                                    <div class="containertext ">
                                         <img src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="Avatar" style="width:100%;">
-                                        <p><?= $rows1[$i][3] ?></p>
-                                        <span class="time-right"><?= $rows1[$i][4] ?></span>
+                                        <p><?= $rows[$i][1] ?> - </p>
+                                        <p><?= $rows[$i][3] ?></p>
+                                        <span class="time-right"><?= $rows[$i][4] ?></span>
                                     </div>
                                 <?php
                                 }
                                 ?>
-                                <form method="post">
+                    
+                                <form method="post" action="chatprocess.php?id=<?php echo $id = $_GET["id"];  ?>">
                                     <thead>
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Input" name="messContent">
-                                            <button class="btn btn-light" name="send" onclick="tai_lai_trang()">Go</button>
+                                            <button class="btn btn-light" name="send">Chatt</button>
                                         </div>
                                     </thead>
-                                    <?php
-                                    $sever = 'localhost';
-                                    $server_user = 'root';
-                                    $database = 'web';
-                                    $server_pass = '';
-                                    $connect = mysqli_connect($sever, $server_user, $server_pass, $database);
-                                    if (isset($_POST["send"])) {
-
-                                        $messStu = $id;
-                                        $messTutor = $_SESSION['accountID'];
-                                        $messContent = $_POST["messContent"];
-                                        $time = date("Y-m-d H:i:s");
-
-                                        if ($messContent == "") {
-                                            echo "Please fill the blank!";
-                                        } else {
-                                            $sql = "INSERT INTO `message`(`messTo`, `messFrom`, `messContent`, `time`) VALUES ($messTutor,  $messStu, '$messContent','$time')";
-                                            echo $sql;
-                                            mysqli_query($connect, $sql);
-                                        }
-                                    }
-                                    ?>
                                 </form>
                             </div>
                         </div>
                     </div>
 
-                    
+
                 </div>
                 <!-- test -->
 
@@ -506,11 +476,7 @@ if (!isset($_SESSION['username'])) {
     </script>
     <!-- Dropzone JS  -->
     <script src="../../assets/plugins/dropzone/js/dropzone.js"></script>
-    <script>
-        function tai_lai_trang() {
-            location.reload();
-        }
-    </script>
+
 </body>
 
 </html>

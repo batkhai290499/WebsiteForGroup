@@ -334,8 +334,7 @@ if (!isset($_SESSION['username'])) {
                           <td class="column1"><?= $rows[$i][0] ?></td>
                           <td class="column2"><?= $rows[$i][1] ?></td>
                           <td class="column4"><?= $rows[$i][3] ?></td>
-                          <td class="column5"><button type="button" class="btn btn-light waves-effect waves-light m-1" onclick=""> <i class="fa fa fa-envelope-o"></i> <a href="chat.php?id=<?= $rows[$i][2] ?>">Chat</a> </button></td>
-
+                          <td class="column5"><button type="button" class="btn btn-light waves-effect waves-light m-1" onclick=""> <i class="fa fa fa-envelope-o"></i> <a href="chat.php?id=<?= $rows[$i][3] ?>">Chat</a> </button></td>
                         </tr>
                       </div>
                     <?php
