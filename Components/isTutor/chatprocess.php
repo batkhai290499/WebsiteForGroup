@@ -9,6 +9,7 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
 
 if (isset($_POST["send"])) {
     if (isset($_GET["id"])) {
+        
         $messStu = $_GET["id"];
         $messTutor = $_SESSION['accountID'];
         $messContent = $_POST["messContent"];

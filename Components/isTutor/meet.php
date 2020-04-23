@@ -16,6 +16,7 @@ if (!isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+
     <title>Dashtreme - Multipurpose Bootstrap4 Admin Template</title>
     <!--favicon-->
     <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
@@ -45,7 +46,7 @@ if (!isset($_SESSION['username'])) {
     <link href="../../assets/css/app-style.css" rel="stylesheet" />
     <!-- Dropzone css -->
     <link href="../../assets/plugins/dropzone/css/dropzone1.css" rel="stylesheet" type="text/css">
-    <link href="./tem1.css" rel="stylesheet" />
+    <link href="./tem.css" rel="stylesheet" />
 </head>
 
 
@@ -79,7 +80,12 @@ if (!isset($_SESSION['username'])) {
                         <i class="zmdi zmdi-view-dashboard"></i> <span>View Meeting</span><i class="fa fa-angle-left pull-right"></i>
                     </a>
                 </li>
-                <!--  <li>
+                <!-- <li>
+          <a href="teacher.php" class="waves-effect">
+            <i class="zmdi zmdi-view-dashboard"></i> <span>View Tutor</span><i class="fa fa-angle-left pull-right"></i>
+          </a>
+        </li>
+        <li>
           <a href="student.php" class="waves-effect">
             <i class="zmdi zmdi-layers"></i>
             <span>View Student</span> <i class="fa fa-angle-left pull-right"></i>
@@ -194,32 +200,38 @@ if (!isset($_SESSION['username'])) {
                     </div>
                 </div>
                 <div class="row">
+
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">List Student</h5>
+                                <h5 class="card-title">List Meeting</h5>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Group Name</th>
+                                                <th scope="col">Title Meeting</th>
+                                                <th scope="col">Date & Time</th>
                                                 <th scope="col">Student</th>
-                                                <th scope="col">Chat Now</th>
+                                                <th scope="col">File</th>
+                                                <th scope="col">Note</th>
+
                                             </tr>
                                         </thead>
                                         <?php
                                         require_once '../database.php';
-                                        $sql = "Select * from group1 where tutorId = " . $_SESSION['accountID'];
+                                        $sql = "Select * from meeting where tutor =" . $_SESSION['accountID'];
                                         $rows = query($sql);
                                         for ($i = 0; $i < count($rows); $i++) {
                                         ?>
                                             <div>
                                                 <tr>
                                                     <td class="column1"><?= $rows[$i][0] ?></td>
-                                                    <td class="column2"><?= $rows[$i][1] ?></td>
-                                                    <td class="column3"><?= $rows[$i][2] ?></td>
-                                                    <td class="column5"><button type="button" class="btn btn-light waves-effect waves-light m-1"> <i class="fa fa fa-envelope-o"></i> <a href="chat.php?id=<?= $rows[$i][2] ?>">Chat</a> </button></td>
+                                                    <td class="column2"><?= $rows[$i][4] ?></td>
+                                                    <td class="column3"><?= $rows[$i][1] ?></td>
+                                                    <td class="column4"><?= $rows[$i][3] ?></td>
+                                                    <td class="column5"><?= $rows[$i][6] ?></td>
+                                                    <td class="column6"><?= $rows[$i][5] ?></td>
                                                 </tr>
                                             </div>
                                         <?php
@@ -231,129 +243,57 @@ if (!isset($_SESSION['username'])) {
                         </div>
                     </div>
 
-                </div>
-                <!-- test -->
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">List file for student</h5>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">File Name</th>
-                                                <th scope="col">Location</th>
-                                                <th scope="col">Tutor</th>
-                                                <th scope="col">Student</th>
-                                                <th scope="col">Comment</th>
-                                            </tr>
-                                        </thead>
-                                        <?php
-                                        require_once '../database.php';
-                                        $sql = "Select * from file where tutor = " . $_SESSION['accountID'];
-                                        $rows = query($sql);
-                                        for ($i = 0; $i < count($rows); $i++) {
-                                        ?>
-                                            <div>
-                                                <tr>
-                                                    <td class="column1"><?= $rows[$i][0] ?></td>
-                                                    <td class="column2"><?= $rows[$i][1] ?></td>
-                                                    <td class="column3">
-                                                        <p><a href="file/<?= $rows[$i][2] ?>">download</a></p>
-                                                    </td>
-                                                    <td class="column3"><?= $rows[$i][3] ?></td>
-                                                    <td class="column3"><?= $rows[$i][4] ?></td>
-                                                    <td class="column3"><?= $rows[$i][5] ?></td>
-                                                </tr>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-4">
                         <div class="card">
-                            <div class="card-header text-uppercase">Multiple Form Uploads</div>
+                            <div class="card-header text-uppercase">Crete New Meeting</div>
                             <div class="card-body">
-                                <form method="post" enctype="multipart/form-data" action="view.php">
-                                    <label>Title</label>
-                                    <input type="text" name="fileName">
-                                    <label>File Upload</label>
-                                    <input type="file" name="file">
-                                    <div class="form-group">
-                                        <label>Select Student</label>
-                                        <select name="studentGroup[]" class="form-control multiple-select" multiple="multiple">
-                                            <?php
-                                            require_once '../database.php';
-                                            $sql = "Select * from group1 where tutorId = " . $_SESSION['accountID'];
-                                            $rows = query($sql);
-                                            for ($i = 0; $i < count($rows); $i++) {
-                                            ?>
-                                                <div>
-                                                    <option value="<?= $rows[$i][2] ?>"><?= $rows[$i][2] ?></option>
+                                <form method="POST" action="meetprocess.php">
+                                    <thead>
+                                        <div class="col-12 col-lg-12 ">
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">Title Meeting</label>
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" name="title">
                                                 </div>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <label>Comment</label>
-                                    <input type="text" name="comment">
-                                    <input type="submit" name="submit" value="Upload">
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">Select Student</label>
+                                                <div class="col-sm-12">
+                                                    <select name="studentGroup[]" class="form-control multiple-select " multiple="multiple">
+                                                        <?php
+                                                        require_once '../database.php';
+                                                        $sql = "Select * from group1 where tutorId =" . $_SESSION["accountID"];
+                                                        $rows = query($sql);
+                                                        for ($i = 0; $i < count($rows); $i++) {
+                                                        ?>
+                                                            <div>
+                                                                <option value="<?= $rows[$i][2] ?>"><?= $rows[$i][2] ?></option>
+                                                            </div>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">Time</label>
+                                                <div class="col-sm-12">
+                                                    <input type="datetime-local" class="form-control" name="time" value="">
+                                                </div>
+                                            </div>
+                                            <button  name="meetnow" class="btn btn-light btn-round px-5"><i class="icon-circle"></i> Crete</button>
+                                        </div>
+                                    </thead>
+                                    
+
+                                    <!--end row-->
                                 </form>
-                                <?php
-                                $localhost = "localhost"; #localhost
-                                $dbusername = "root"; #username of phpmyadmin
-                                $dbpassword = "";  #password of phpmyadmin
-                                $dbname = "web";  #database name
-
-                                #connection string
-                                $conn = mysqli_connect($localhost, $dbusername, $dbpassword, $dbname);
-
-                                if (isset($_POST["submit"])) {
-                                    #retrieve file title
-                                    $fileName = $_POST["fileName"];
-                                    $studentGroup = $_POST["studentGroup"];
-                                    $tutor = $_SESSION['accountID'];
-                                    $comment = $_POST['comment'];
-
-                                    #file name with a random number so that similar dont get replaced
-                                    $pname = $_FILES["file"]["name"];
-
-                                    #temporary file name to store file
-                                    $tname = $_FILES["file"]["tmp_name"];
-
-                                    #upload directory path
-                                    $uploads_dir = 'file';
-                                    #TO move the uploaded file to specific location
-                                    move_uploaded_file($tname, $uploads_dir . '/' . $pname);
-
-                                    // $st = "file/" .$_FILES["file"]["name"];
-                                    // echo $st;
-                                    // echo "<a href='$st'>download</a>"; 
-                                    #sql query to insert into database
-                                    //$sql = "INSERT into file(title,image) VALUES('$title','$pname')";
-                                    foreach ($studentGroup as $stu) {
-                                        $sql = "INSERT INTO `file`(`fileName`, `location`, `tutor`, `student`, `comment`) VALUES ( '$fileName', '$pname', $tutor,  $stu, '$comment')";
-                                        // echo $fileName . "-";
-                                        // echo $tutor . "-";
-                                        // echo $pname . "-";
-                                        // echo $stu . "-";
-                                        // echo $comment . "-";
-                                        //echo $sql;
-                                        mysqli_query($conn, $sql);
-                                    }
-                                }
-                                ?>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- test -->
+
 
 
 
@@ -583,6 +523,11 @@ if (!isset($_SESSION['username'])) {
     </script>
     <!-- Dropzone JS  -->
     <script src="../../assets/plugins/dropzone/js/dropzone.js"></script>
+    <script>
+        function tai_lai_trang() {
+            location.reload();
+        }
+    </script>
 </body>
 
 </html>

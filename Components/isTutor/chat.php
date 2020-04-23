@@ -75,6 +75,11 @@ if (!isset($_SESSION['username'])) {
             </div>
             <ul class="sidebar-menu">
                 <li class="sidebar-header">MAIN NAVIGATION</li>
+                <li>
+                    <a href="meet.php" class="waves-effect">
+                        <i class="zmdi zmdi-view-dashboard"></i> <span>View Meeting</span><i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                </li>
                 <!-- <li>
           <a href="teacher.php" class="waves-effect">
             <i class="zmdi zmdi-view-dashboard"></i> <span>View Tutor</span><i class="fa fa-angle-left pull-right"></i>
@@ -230,7 +235,7 @@ if (!isset($_SESSION['username'])) {
                                 }
                                 ?>
 
-                                    
+
                                 <form method="post" action="chatprocess.php?id=<?php echo $id = $_GET["id"];  ?>">
                                     <thead>
                                         <div class="input-group">
