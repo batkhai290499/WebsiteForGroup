@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['username'])) {
+  header('Location: ./isLogin/login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +62,7 @@ session_start();
     <!--Start sidebar-wrapper-->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
       <div class="brand-logo">
-        <a href="index.html">
+        <a href="index.php">
           <img src="../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
           <h5 class="logo-text">Dashtreme Admin</h5>
         </a>
@@ -75,6 +78,12 @@ session_start();
           <a href="student.php" class="waves-effect">
             <i class="zmdi zmdi-layers"></i>
             <span>View Student</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+        </li>
+        <li>
+          <a href="meeting.php" class="waves-effect">
+            <i class="zmdi zmdi-widgets"></i> <span>List Meeting</span>
+            <i class="fa fa-angle-left float-right"></i>
           </a>
         </li>
         <!-- <li>
@@ -118,10 +127,10 @@ session_start();
               <li class="dropdown-item user-details">
                 <a href="javaScript:void();">
                   <div class="media">
-                    <div class="avatar"><img class="align-self-start mr-3" src="<?php echo $_SESSION['userAvatar'];  ?>" alt="user avatar"></div>
+                    <div class="avatar"><img class="align-self-start mr-3" src="<?php echo $_SESSION['useravatar'];  ?>" alt="user avatar"></div>
                     <div class="media-body">
-                      <h6 class="mt-2 user-title"><?php echo $_SESSION['userName'];  ?></h6>
-                      <p class="user-subtitle"><?php echo $_SESSION['userEmail'];  ?></p>
+                      <h6 class="mt-2 user-title"><?php echo $_SESSION['username'];  ?></h6>
+                      <p class="user-subtitle"></p>
                     </div>
                   </div>
                 </a>
@@ -209,7 +218,7 @@ session_start();
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">List Tutor</h5>
+                <h5 class="card-title">List Student</h5>
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
@@ -265,7 +274,7 @@ session_start();
     <footer class="footer">
       <div class="container">
         <div class="text-center">
-          Chúc mừng bạn có username là <?php echo $_SESSION['userName'];  ?> đã đăng nhập thành công !
+          Chúc mừng bạn có username là <?php echo $_SESSION['username']; ?> đã đăng nhập thành công !
         </div>
       </div>
     </footer>

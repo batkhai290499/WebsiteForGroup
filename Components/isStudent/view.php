@@ -72,12 +72,12 @@ if (!isset($_SESSION['username'])) {
       </div>
       <ul class="sidebar-menu">
         <li class="sidebar-header">MAIN NAVIGATION</li>
-        <!-- <li>
-          <a href="teacher.php" class="waves-effect">
+        <li>
+          <a href="listtutor.php" class="waves-effect">
             <i class="zmdi zmdi-view-dashboard"></i> <span>View Tutor</span><i class="fa fa-angle-left pull-right"></i>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="student.php" class="waves-effect">
             <i class="zmdi zmdi-layers"></i>
             <span>View Student</span> <i class="fa fa-angle-left pull-right"></i>
@@ -197,7 +197,7 @@ if (!isset($_SESSION['username'])) {
           <div class="col-lg-8">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Your Tutor</h5>
+                <h5 class="card-title">Your Homework</h5>
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
@@ -303,45 +303,6 @@ if (!isset($_SESSION['username'])) {
                     }
                   }
                   ?>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Your Tutor</h5>
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Group Name</th>
-                        <th scope="col">Your Tutor</th>
-                        <th scope="col">Chat</th>
-                      </tr>
-                    </thead>
-                    <?php
-                    require_once '../database.php';
-                    $sql = "Select * from group1 where studentId =" . $_SESSION['accountID'];
-                    $rows = query($sql);
-                    for ($i = 0; $i < count($rows); $i++) {
-                    ?>
-                      <div>
-                        <tr>
-                          <td class="column1"><?= $rows[$i][0] ?></td>
-                          <td class="column2"><?= $rows[$i][1] ?></td>
-                          <td class="column4"><?= $rows[$i][3] ?></td>
-                          <td class="column5"><button type="button" class="btn btn-light waves-effect waves-light m-1" onclick=""> <i class="fa fa fa-envelope-o"></i> <a href="chat.php?id=<?= $rows[$i][3] ?>">Chat</a> </button></td>
-                        </tr>
-                      </div>
-                    <?php
-                    }
-                    ?>
-                  </table>
-                </div>
               </div>
             </div>
           </div>

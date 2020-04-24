@@ -67,7 +67,7 @@ if (!isset($_SESSION['username'])) {
         <!--Start sidebar-wrapper-->
         <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
             <div class="brand-logo">
-                <a href="index.html">
+                <a href="view.php">
                     <img src="../../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
                     <h5 class="logo-text">Dashtreme Admin</h5>
                 </a>
@@ -77,6 +77,12 @@ if (!isset($_SESSION['username'])) {
                 <li>
                     <a href="meet.php" class="waves-effect">
                         <i class="zmdi zmdi-view-dashboard"></i> <span>View Meeting</span><i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="student.php" class="waves-effect">
+                        <i class="zmdi zmdi-layers"></i>
+                        <span>View Student</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                 </li>
                 <!--  <li>
@@ -192,45 +198,6 @@ if (!isset($_SESSION['username'])) {
                             </form>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">List Student</h5>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Group Name</th>
-                                                <th scope="col">Student</th>
-                                                <th scope="col">Chat Now</th>
-                                            </tr>
-                                        </thead>
-                                        <?php
-                                        require_once '../database.php';
-                                        $sql = "Select * from group1 where tutorId = " . $_SESSION['accountID'];
-                                        $rows = query($sql);
-                                        for ($i = 0; $i < count($rows); $i++) {
-                                        ?>
-                                            <div>
-                                                <tr>
-                                                    <td class="column1"><?= $rows[$i][0] ?></td>
-                                                    <td class="column2"><?= $rows[$i][1] ?></td>
-                                                    <td class="column3"><?= $rows[$i][2] ?></td>
-                                                    <td class="column5"><button type="button" class="btn btn-light waves-effect waves-light m-1"> <i class="fa fa fa-envelope-o"></i> <a href="chat.php?id=<?= $rows[$i][2] ?>">Chat</a> </button></td>
-                                                </tr>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
                 <!-- test -->
                 <div class="row">

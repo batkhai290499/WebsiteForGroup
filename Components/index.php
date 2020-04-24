@@ -64,7 +64,7 @@ if (!isset($_SESSION['username'])) {
     <!--Start sidebar-wrapper-->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
       <div class="brand-logo">
-        <a href="index.html">
+        <a href="index.php">
           <img src="../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
           <h5 class="logo-text">Dashtreme Admin</h5>
         </a>
@@ -80,6 +80,12 @@ if (!isset($_SESSION['username'])) {
           <a href="student.php" class="waves-effect">
             <i class="zmdi zmdi-layers"></i>
             <span>View Student</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+        </li>
+        <li>
+          <a href="meeting.php" class="waves-effect">
+            <i class="zmdi zmdi-widgets"></i> <span>List Meeting</span>
+            <i class="fa fa-angle-left float-right"></i>
           </a>
         </li>
         <!-- <li>
@@ -186,7 +192,7 @@ if (!isset($_SESSION['username'])) {
                   <button class="btn btn-light btn-round px-5" onclick="closeForm()"><i class="icon-lock"></i> Close</button>
 
                 </thead>
-                
+
               </form>
             </div>
           </div>
@@ -260,7 +266,7 @@ if (!isset($_SESSION['username'])) {
                     } else {
 
                       foreach ($studentGroup as $stu) {
-                         //echo $stu;
+                        //echo $stu;
                         $sql = "INSERT INTO `group1`(`groupName`, `studentGroup`, `tutorGroup`) VALUES ('$groupName', '$stu', '$tutorGroup')";
                         mysqli_query($connect, $sql);
                       }

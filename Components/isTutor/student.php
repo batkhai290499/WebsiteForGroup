@@ -16,7 +16,6 @@ if (!isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-
     <title>Dashtreme - Multipurpose Bootstrap4 Admin Template</title>
     <!--favicon-->
     <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
@@ -46,7 +45,7 @@ if (!isset($_SESSION['username'])) {
     <link href="../../assets/css/app-style.css" rel="stylesheet" />
     <!-- Dropzone css -->
     <link href="../../assets/plugins/dropzone/css/dropzone1.css" rel="stylesheet" type="text/css">
-    <link href="./tem.css" rel="stylesheet" />
+    <link href="./tem1.css" rel="stylesheet" />
 </head>
 
 
@@ -86,17 +85,6 @@ if (!isset($_SESSION['username'])) {
                         <span>View Student</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                 </li>
-                <!-- <li>
-          <a href="teacher.php" class="waves-effect">
-            <i class="zmdi zmdi-view-dashboard"></i> <span>View Tutor</span><i class="fa fa-angle-left pull-right"></i>
-          </a>
-        </li>
-        <li>
-          <a href="student.php" class="waves-effect">
-            <i class="zmdi zmdi-layers"></i>
-            <span>View Student</span> <i class="fa fa-angle-left pull-right"></i>
-          </a>
-        </li> -->
                 <!-- <li>
           <a href="javaScript:void();" class="waves-effect">
             <i class="zmdi zmdi-widgets"></i> <span>Widgets</span>
@@ -206,38 +194,32 @@ if (!isset($_SESSION['username'])) {
                     </div>
                 </div>
                 <div class="row">
-
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">List Meeting</h5>
+                                <h5 class="card-title">List Student</h5>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Title Meeting</th>
-                                                <th scope="col">Date & Time</th>
+                                                <th scope="col">Group Name</th>
                                                 <th scope="col">Student</th>
-                                                <th scope="col">File</th>
-                                                <th scope="col">Note</th>
-
+                                                <th scope="col">Chat Now</th>
                                             </tr>
                                         </thead>
                                         <?php
                                         require_once '../database.php';
-                                        $sql = "Select * from meeting where tutor =" . $_SESSION['accountID'];
+                                        $sql = "Select * from group1 where tutorId = " . $_SESSION['accountID'];
                                         $rows = query($sql);
                                         for ($i = 0; $i < count($rows); $i++) {
                                         ?>
                                             <div>
                                                 <tr>
                                                     <td class="column1"><?= $rows[$i][0] ?></td>
-                                                    <td class="column2"><?= $rows[$i][4] ?></td>
-                                                    <td class="column3"><?= $rows[$i][1] ?></td>
-                                                    <td class="column4"><?= $rows[$i][3] ?></td>
-                                                    <td class="column5"><?= $rows[$i][6] ?></td>
-                                                    <td class="column6"><?= $rows[$i][5] ?></td>
+                                                    <td class="column2"><?= $rows[$i][1] ?></td>
+                                                    <td class="column3"><?= $rows[$i][2] ?></td>
+                                                    <td class="column5"><button type="button" class="btn btn-light waves-effect waves-light m-1"> <i class="fa fa fa-envelope-o"></i> <a href="chat.php?id=<?= $rows[$i][2] ?>">Chat</a> </button></td>
                                                 </tr>
                                             </div>
                                         <?php
@@ -249,91 +231,43 @@ if (!isset($_SESSION['username'])) {
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header text-uppercase">Crete New Meeting</div>
-                            <div class="card-body">
-                                <form method="POST" action="meetprocess.php">
-                                    <thead>
-                                        <div class="col-12 col-lg-12 ">
-                                            <div class="form-group row">
-                                                <label class="col-sm-6 col-form-label">Title Meeting</label>
-                                                <div class="col-sm-12">
-                                                    <input type="text" class="form-control" name="title">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-6 col-form-label">Select Student</label>
-                                                <div class="col-sm-12">
-                                                    <select name="studentGroup[]" class="form-control multiple-select " multiple="multiple">
-                                                        <?php
-                                                        require_once '../database.php';
-                                                        $sql = "Select * from group1 where tutorId =" . $_SESSION["accountID"];
-                                                        $rows = query($sql);
-                                                        for ($i = 0; $i < count($rows); $i++) {
-                                                        ?>
-                                                            <div>
-                                                                <option value="<?= $rows[$i][2] ?>"><?= $rows[$i][2] ?></option>
-                                                            </div>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-6 col-form-label">Time</label>
-                                                <div class="col-sm-12">
-                                                    <input type="datetime-local" class="form-control" name="time" value="">
-                                                </div>
-                                            </div>
-                                            <button  name="meetnow" class="btn btn-light btn-round px-5"><i class="icon-circle"></i> Crete</button>
-                                        </div>
-                                    </thead>
-                                    
-
-                                    <!--end row-->
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- test -->
-
-
-
-
-                <div class="row" style="height: 450px;">
-
-                </div>
-                <!--End Row-->
-                <!--start overlay-->
-                <div class="overlay toggle-menu"></div>
-                <!--end overlay-->
             </div>
-            <!-- End container-fluid-->
 
+
+
+            <div class="row" style="height: 450px;">
+
+            </div>
+            <!--End Row-->
+            <!--start overlay-->
+            <div class="overlay toggle-menu"></div>
+            <!--end overlay-->
         </div>
-        <!--End content-wrapper-->
-        <!--Start Back To Top Button-->
-        <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-        <!--End Back To Top Button-->
+        <!-- End container-fluid-->
 
-        <!--Start footer-->
-        <footer class="footer">
-            <div class="container">
-                <div class="text-center">
-                    Chúc mừng bạn có username là <?php echo $_SESSION['username'];  ?> đã đăng nhập thành công !
-                    <?php
-                    echo "Bây giờ là " . date("Y-m-d H:i:s");
-                    ?>
-                </div>
+    </div>
+    <!--End content-wrapper-->
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+    <!--Start footer-->
+    <footer class="footer">
+        <div class="container">
+            <div class="text-center">
+                Chúc mừng bạn có username là <?php echo $_SESSION['username'];  ?> đã đăng nhập thành công !
+                <?php
+                echo "Bây giờ là " . date("Y-m-d H:i:s");
+                ?>
             </div>
-        </footer>
-        <!--End footer-->
+        </div>
+    </footer>
+    <!--End footer-->
 
-        <!--start color switcher-->
-        <!--end color switcher-->
+    <!--start color switcher-->
+    <!--end color switcher-->
 
     </div>
     <!--End wrapper-->
@@ -529,11 +463,6 @@ if (!isset($_SESSION['username'])) {
     </script>
     <!-- Dropzone JS  -->
     <script src="../../assets/plugins/dropzone/js/dropzone.js"></script>
-    <script>
-        function tai_lai_trang() {
-            location.reload();
-        }
-    </script>
 </body>
 
 </html>

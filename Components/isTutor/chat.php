@@ -68,7 +68,7 @@ if (!isset($_SESSION['username'])) {
         <!--Start sidebar-wrapper-->
         <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
             <div class="brand-logo">
-                <a href="index.html">
+                <a href="view.php">
                     <img src="../../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
                     <h5 class="logo-text">Dashtreme Admin</h5>
                 </a>
@@ -78,6 +78,12 @@ if (!isset($_SESSION['username'])) {
                 <li>
                     <a href="meet.php" class="waves-effect">
                         <i class="zmdi zmdi-view-dashboard"></i> <span>View Meeting</span><i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="student.php" class="waves-effect">
+                        <i class="zmdi zmdi-layers"></i>
+                        <span>View Student</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                 </li>
                 <!-- <li>
@@ -247,13 +253,8 @@ if (!isset($_SESSION['username'])) {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
                 <!-- test -->
-
-
-
 
                 <div class="row" style="height: 450px;">
 

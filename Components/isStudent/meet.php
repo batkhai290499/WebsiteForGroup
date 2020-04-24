@@ -5,6 +5,10 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
 //nếu chưa, chuyển hướng người dùng ra lại trang đăng nhập
 if (!isset($_SESSION['username'])) {
     header('Location: ./isLogin/login.php');
+    
+}
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
 }
 ?>
 <!DOCTYPE html>
@@ -20,6 +24,7 @@ if (!isset($_SESSION['username'])) {
     <title>Dashtreme - Multipurpose Bootstrap4 Admin Template</title>
     <!--favicon-->
     <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../assets/plugins/summernote/dist/summernote-bs4.css" />
 
     <!--Select Plugins-->
     <link href="../../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
@@ -47,6 +52,8 @@ if (!isset($_SESSION['username'])) {
     <!-- Dropzone css -->
     <link href="../../assets/plugins/dropzone/css/dropzone1.css" rel="stylesheet" type="text/css">
     <link href="./tem.css" rel="stylesheet" />
+
+
 </head>
 
 
@@ -78,12 +85,6 @@ if (!isset($_SESSION['username'])) {
                 <li>
                     <a href="meet.php" class="waves-effect">
                         <i class="zmdi zmdi-view-dashboard"></i> <span>View Meeting</span><i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="student.php" class="waves-effect">
-                        <i class="zmdi zmdi-layers"></i>
-                        <span>View Student</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                 </li>
                 <!-- <li>
@@ -221,12 +222,14 @@ if (!isset($_SESSION['username'])) {
                                                 <th scope="col">Student</th>
                                                 <th scope="col">File</th>
                                                 <th scope="col">Note</th>
-
                                             </tr>
                                         </thead>
                                         <?php
                                         require_once '../database.php';
-                                        $sql = "Select * from meeting where tutor =" . $_SESSION['accountID'];
+                                        if (isset($_GET["id"])) {
+                                            $id = $_GET["id"];
+                                        }
+                                        $sql = "Select * from meeting where tutor = ". $id;
                                         $rows = query($sql);
                                         for ($i = 0; $i < count($rows); $i++) {
                                         ?>
@@ -235,7 +238,7 @@ if (!isset($_SESSION['username'])) {
                                                     <td class="column1"><?= $rows[$i][0] ?></td>
                                                     <td class="column2"><?= $rows[$i][4] ?></td>
                                                     <td class="column3"><?= $rows[$i][1] ?></td>
-                                                    <td class="column4"><?= $rows[$i][3] ?></td>
+                                                    <td class="column3"><?= $rows[$i][3] ?></td>
                                                     <td class="column5"><?= $rows[$i][6] ?></td>
                                                     <td class="column6"><?= $rows[$i][5] ?></td>
                                                 </tr>
@@ -249,57 +252,27 @@ if (!isset($_SESSION['username'])) {
                         </div>
                     </div>
 
+
                     <div class="col-lg-4">
                         <div class="card">
-                            <div class="card-header text-uppercase">Crete New Meeting</div>
+                            <div class="card-header text-uppercase">Multiple Form Uploads</div>
                             <div class="card-body">
-                                <form method="POST" action="meetprocess.php">
-                                    <thead>
-                                        <div class="col-12 col-lg-12 ">
-                                            <div class="form-group row">
-                                                <label class="col-sm-6 col-form-label">Title Meeting</label>
-                                                <div class="col-sm-12">
-                                                    <input type="text" class="form-control" name="title">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-6 col-form-label">Select Student</label>
-                                                <div class="col-sm-12">
-                                                    <select name="studentGroup[]" class="form-control multiple-select " multiple="multiple">
-                                                        <?php
-                                                        require_once '../database.php';
-                                                        $sql = "Select * from group1 where tutorId =" . $_SESSION["accountID"];
-                                                        $rows = query($sql);
-                                                        for ($i = 0; $i < count($rows); $i++) {
-                                                        ?>
-                                                            <div>
-                                                                <option value="<?= $rows[$i][2] ?>"><?= $rows[$i][2] ?></option>
-                                                            </div>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-6 col-form-label">Time</label>
-                                                <div class="col-sm-12">
-                                                    <input type="datetime-local" class="form-control" name="time" value="">
-                                                </div>
-                                            </div>
-                                            <button  name="meetnow" class="btn btn-light btn-round px-5"><i class="icon-circle"></i> Crete</button>
+                                <form method="post" enctype="multipart/form-data" action="meetprocess.php?id=<?php echo $id ?>" >
+                                    <label>File Upload</label>
+                                    <input type="file" name="file">
+                                    <hr>
+                                    <div class="form-group">
+                                        <label>Note Something you fucking need</label>
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="summernoteEditor" placeholder="Message body" style="height: 200px" name="note"></textarea>
                                         </div>
-                                    </thead>
-                                    
-
-                                    <!--end row-->
-                                </form>
+                                    </div>
+                                    <input type="submit" name="submit" value="Upload">
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- test -->
-
 
 
 
@@ -323,10 +296,12 @@ if (!isset($_SESSION['username'])) {
         <footer class="footer">
             <div class="container">
                 <div class="text-center">
+                    
                     Chúc mừng bạn có username là <?php echo $_SESSION['username'];  ?> đã đăng nhập thành công !
                     <?php
-                    echo "Bây giờ là " . date("Y-m-d H:i:s");
+                    echo "Bây giờ là " . date("Y-m-d H:i");
                     ?>
+                    
                 </div>
             </div>
         </footer>
@@ -529,11 +504,19 @@ if (!isset($_SESSION['username'])) {
     </script>
     <!-- Dropzone JS  -->
     <script src="../../assets/plugins/dropzone/js/dropzone.js"></script>
+    <script src="../../assets/plugins/summernote/dist/summernote-bs4.min.js"></script>
     <script>
         function tai_lai_trang() {
             location.reload();
         }
     </script>
+    <script>
+        $('#summernoteEditor').summernote({
+            height: 400,
+            tabsize: 2
+        });
+    </script>
+
 </body>
 
 </html>
