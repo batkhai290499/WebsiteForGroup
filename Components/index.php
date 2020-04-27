@@ -202,7 +202,7 @@ if (!isset($_SESSION['username'])) {
         <div class="row">
           <div class="col-lg-6">
             <div class="card">
-              <div class="card-header text-uppercase">Crete</div>
+              <div class="card-header text-uppercase">Create</div>
               <div class="card-body">
                 <form method="post">
                   <thead>
@@ -247,7 +247,7 @@ if (!isset($_SESSION['username'])) {
                         ?>
                       </select>
                     </div>
-                    <button type="submit" name="crete" class="btn btn-light btn-round px-5"><i class="icon-circle"></i> Crete</button>
+                    <button type="submit" name="crete" class="btn btn-light btn-round px-5"><i class="icon-circle"></i> Create</button>
                   </thead>
                   <?php
                   $sever = 'localhost';

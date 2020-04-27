@@ -132,7 +132,7 @@ if (!isset($_SESSION['username'])) {
                 <ul class="navbar-nav align-items-center right-nav-link">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                            <span class="user-profile"><img src="" class="img-circle" alt="user avatar"></span>
+                        <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-item user-details">
@@ -226,17 +226,17 @@ if (!isset($_SESSION['username'])) {
                                         </thead>
                                         <?php
                                         require_once '../database.php';
-                                        $sql = "Select * from meeting where tutor =" . $_SESSION['accountID'];
+                                        $sql = "SELECT meeting.meetingId, meeting.meetingDate, meeting.meetingTitle,account.username, meeting.note, meeting.location FROM meeting INNER JOIN account ON account.accountId = meeting.student where tutor =" . $_SESSION['accountID'];
                                         $rows = query($sql);
                                         for ($i = 0; $i < count($rows); $i++) {
                                         ?>
                                             <div>
                                                 <tr>
                                                     <td class="column1"><?= $rows[$i][0] ?></td>
-                                                    <td class="column2"><?= $rows[$i][4] ?></td>
+                                                    <td class="column2"><?= $rows[$i][2] ?></td>
                                                     <td class="column3"><?= $rows[$i][1] ?></td>
                                                     <td class="column4"><?= $rows[$i][3] ?></td>
-                                                    <td class="column5"><?= $rows[$i][6] ?></td>
+                                                    <td class="column5"><?= $rows[$i][4] ?></td>
                                                     <td class="column6"><?= $rows[$i][5] ?></td>
                                                 </tr>
                                             </div>
@@ -251,7 +251,7 @@ if (!isset($_SESSION['username'])) {
 
                     <div class="col-lg-4">
                         <div class="card">
-                            <div class="card-header text-uppercase">Crete New Meeting</div>
+                            <div class="card-header text-uppercase">Create New Meeting</div>
                             <div class="card-body">
                                 <form method="POST" action="meetprocess.php">
                                     <thead>
@@ -287,7 +287,7 @@ if (!isset($_SESSION['username'])) {
                                                     <input type="datetime-local" class="form-control" name="time" value="">
                                                 </div>
                                             </div>
-                                            <button  name="meetnow" class="btn btn-light btn-round px-5"><i class="icon-circle"></i> Crete</button>
+                                            <button  name="meetnow" class="btn btn-light btn-round px-5"><i class="icon-circle"></i> Create</button>
                                         </div>
                                     </thead>
                                     

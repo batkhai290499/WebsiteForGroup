@@ -65,7 +65,7 @@ if (!isset($_SESSION['username'])) {
     <!--Start sidebar-wrapper-->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
       <div class="brand-logo">
-        <a href="index.html">
+        <a href="view.php">
           <img src="../../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
           <h5 class="logo-text">Dashtreme Admin</h5>
         </a>
@@ -77,7 +77,7 @@ if (!isset($_SESSION['username'])) {
             <i class="zmdi zmdi-view-dashboard"></i> <span>View Tutor</span><i class="fa fa-angle-left pull-right"></i>
           </a>
         </li>
-      <!--   <li>
+        <!--   <li>
           <a href="student.php" class="waves-effect">
             <i class="zmdi zmdi-layers"></i>
             <span>View Student</span> <i class="fa fa-angle-left pull-right"></i>
@@ -118,7 +118,7 @@ if (!isset($_SESSION['username'])) {
         <ul class="navbar-nav align-items-center right-nav-link">
           <li class="nav-item">
             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-              <span class="user-profile"><img src="" class="img-circle" alt="user avatar"></span>
+              <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item user-details">
@@ -193,7 +193,7 @@ if (!isset($_SESSION['username'])) {
         </div>
 
         <!-- test -->
-          
+
 
         <div class="row">
           <div class="col-lg-8">
@@ -208,11 +208,12 @@ if (!isset($_SESSION['username'])) {
                         <th scope="col">Group Name</th>
                         <th scope="col">Your Tutor</th>
                         <th scope="col">Function</th>
+                        <th scope="col">Function</th>
                       </tr>
                     </thead>
                     <?php
                     require_once '../database.php';
-                    $sql = "Select * from group1 where studentId =" . $_SESSION['accountID'];
+                    $sql = "SELECT group1.groupId, group1.groupName, account.username, group1.tutorId FROM group1 INNER JOIN account ON account.accountId = group1.tutorId where studentId = " . $_SESSION['accountID'];
                     $rows = query($sql);
                     for ($i = 0; $i < count($rows); $i++) {
                     ?>
@@ -220,8 +221,18 @@ if (!isset($_SESSION['username'])) {
                         <tr>
                           <td class="column1"><?= $rows[$i][0] ?></td>
                           <td class="column2"><?= $rows[$i][1] ?></td>
-                          <td class="column4"><?= $rows[$i][3] ?></td>
-                          <td class="column5"><button type="button" class="btn btn-light waves-effect waves-light m-1" onclick=""> <i class="fa fa fa-envelope-o"></i> <a href="chat.php?id=<?= $rows[$i][3] ?>">Chat</a> </button> <button type="button" class="btn btn-light waves-effect waves-light m-1" onclick=""> <i class="fa fa fa-envelope-o"></i> <a href="meet.php?id=<?= $rows[$i][3] ?>">Join Meeting</a> </button></td>
+                          <td class="column4"><?= $rows[$i][2] ?></td>
+                          <td class="column5">
+                            <button type="button" class="btn btn-light waves-effect waves-light m-1">
+                              <i class="fa fa fa-envelope-o"></i> <a href="chat.php?id=<?= $rows[$i][3] ?>">Chat</a>
+                            </button>
+                          </td>
+                          <td class="column4">
+                            <button type="button" class="btn btn-light waves-effect waves-light m-1">
+                              <i class="fa fa fa-envelope-o"></i> <a href="meet.php?id=<?= $rows[$i][3] ?>">Join Meeting</a>
+                            </button>
+                           
+                          </td>
                         </tr>
                       </div>
                     <?php

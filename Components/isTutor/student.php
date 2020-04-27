@@ -120,7 +120,7 @@ if (!isset($_SESSION['username'])) {
                 <ul class="navbar-nav align-items-center right-nav-link">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                            <span class="user-profile"><img src="" class="img-circle" alt="user avatar"></span>
+                        <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-item user-details">
@@ -210,7 +210,7 @@ if (!isset($_SESSION['username'])) {
                                         </thead>
                                         <?php
                                         require_once '../database.php';
-                                        $sql = "Select * from group1 where tutorId = " . $_SESSION['accountID'];
+                                        $sql = "SELECT group1.groupId, group1.groupName, account.username, group1.studentId FROM group1 INNER JOIN account ON account.accountId = group1.studentId where tutorId = " . $_SESSION['accountID'];
                                         $rows = query($sql);
                                         for ($i = 0; $i < count($rows); $i++) {
                                         ?>
@@ -219,7 +219,11 @@ if (!isset($_SESSION['username'])) {
                                                     <td class="column1"><?= $rows[$i][0] ?></td>
                                                     <td class="column2"><?= $rows[$i][1] ?></td>
                                                     <td class="column3"><?= $rows[$i][2] ?></td>
-                                                    <td class="column5"><button type="button" class="btn btn-light waves-effect waves-light m-1"> <i class="fa fa fa-envelope-o"></i> <a href="chat.php?id=<?= $rows[$i][2] ?>">Chat</a> </button></td>
+                                                    <td class="column5">
+                                                        <button type="button" class="btn btn-light waves-effect waves-light m-1">
+                                                            <i class="fa fa fa-envelope-o"></i>
+                                                            <a href="chat.php?id=<?= $rows[$i][3] ?>">Chat</a>
+                                                        </button></td>
                                                 </tr>
                                             </div>
                                         <?php

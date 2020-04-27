@@ -132,7 +132,7 @@ if (!isset($_SESSION['username'])) {
                 <ul class="navbar-nav align-items-center right-nav-link">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                            <span class="user-profile"><img src="" class="img-circle" alt="user avatar"></span>
+                        <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-item user-details">
@@ -226,16 +226,16 @@ if (!isset($_SESSION['username'])) {
                                     $id = $_GET["id"];
                                     $acc = $_SESSION['accountID'];
                                 }
-                                $sql = "SELECT * FROM message WHERE messTo IN ($acc,$id) AND messFrom IN ($id,$acc) ORDER BY time ASC";
-                                echo $sql;
+                                $sql = "SELECT message.messContent, message.time, account.username FROM message INNER JOIN account ON account.accountId = message.messFrom WHERE messTo IN ($acc,$id) AND messFrom IN ($id,$acc) ORDER BY time ASC";
+                                //echo $sql;
                                 $rows = query($sql);
                                 for ($i = 0; $i < count($rows); $i++) {
                                 ?>
                                     <div class="containertext ">
                                         <img src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="Avatar" style="width:100%;">
-                                        <p><?= $rows[$i][1] ?></p>
-                                        <p><?= $rows[$i][3] ?></p>
-                                        <span class="time-right"><?= $rows[$i][4] ?></span>
+                                        <p><?= $rows[$i][2] ?></p>
+                                        <p><?= $rows[$i][0] ?></p>
+                                        <span class="time-right"><?= $rows[$i][1] ?></span>
                                     </div>
                                 <?php
                                 }

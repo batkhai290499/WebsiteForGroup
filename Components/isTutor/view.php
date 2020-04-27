@@ -126,7 +126,7 @@ if (!isset($_SESSION['username'])) {
                 <ul class="navbar-nav align-items-center right-nav-link">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                            <span class="user-profile"><img src="" class="img-circle" alt="user avatar"></span>
+                        <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-item user-details">
@@ -212,14 +212,14 @@ if (!isset($_SESSION['username'])) {
                                                 <th scope="col">ID</th>
                                                 <th scope="col">File Name</th>
                                                 <th scope="col">Location</th>
-                                                <th scope="col">Tutor</th>
                                                 <th scope="col">Student</th>
                                                 <th scope="col">Comment</th>
+                                                <th scope="col">Delete</th>
                                             </tr>
                                         </thead>
                                         <?php
                                         require_once '../database.php';
-                                        $sql = "Select * from file where tutor = " . $_SESSION['accountID'];
+                                        $sql = "SELECT file.fileId, file.fileName , file.location,account.username, file.comment FROM file INNER JOIN account ON account.accountId = file.student where tutor = " . $_SESSION['accountID'];
                                         $rows = query($sql);
                                         for ($i = 0; $i < count($rows); $i++) {
                                         ?>
@@ -232,7 +232,7 @@ if (!isset($_SESSION['username'])) {
                                                     </td>
                                                     <td class="column3"><?= $rows[$i][3] ?></td>
                                                     <td class="column3"><?= $rows[$i][4] ?></td>
-                                                    <td class="column3"><?= $rows[$i][5] ?></td>
+                                                    <td class="column3"><a href="deleteprocess.php?id=<?= $rows[$i][0] ?>">Delete</a></td>
                                                 </tr>
                                             </div>
                                         <?php

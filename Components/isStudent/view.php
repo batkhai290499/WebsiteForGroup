@@ -211,7 +211,7 @@ if (!isset($_SESSION['username'])) {
                     </thead>
                     <?php
                     require_once '../database.php';
-                    $sql = "Select * from file where student =" . $_SESSION['accountID'];
+                    $sql = "SELECT file.fileId, file.fileName , file.location,account.username, file.comment FROM file INNER JOIN account ON account.accountId = file.student where student = " . $_SESSION['accountID'];
                     $rows = query($sql);
                     for ($i = 0; $i < count($rows); $i++) {
                     ?>
@@ -223,7 +223,7 @@ if (!isset($_SESSION['username'])) {
                             <p><a href="../isTutor/file/<?= $rows[$i][2] ?>">download</a></p>
                           </td>
                           <td class="column4"><?= $rows[$i][3] ?></td>
-                          <td class="column5"><?= $rows[$i][5] ?></td>
+                          <td class="column5"><?= $rows[$i][4] ?></td>
                         </tr>
                       </div>
                     <?php
@@ -260,7 +260,7 @@ if (!isset($_SESSION['username'])) {
                       ?>
                     </select>
                   </div>
-                  <input type="submit" name="submit" value="Upload">
+                  <button type="submit" name="submit" value="Upload" class="btn btn-success"><i class="fa fa-check-square-o"></i> SAVE</button>
 
 
                   <?php

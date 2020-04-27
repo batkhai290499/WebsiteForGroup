@@ -5,7 +5,6 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
 //nếu chưa, chuyển hướng người dùng ra lại trang đăng nhập
 if (!isset($_SESSION['username'])) {
     header('Location: ./isLogin/login.php');
-    
 }
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
@@ -83,8 +82,8 @@ if (isset($_GET["id"])) {
             <ul class="sidebar-menu">
                 <li class="sidebar-header">MAIN NAVIGATION</li>
                 <li>
-                    <a href="meet.php" class="waves-effect">
-                        <i class="zmdi zmdi-view-dashboard"></i> <span>View Meeting</span><i class="fa fa-angle-left pull-right"></i>
+                    <a href="listtutor.php" class="waves-effect">
+                        <i class="zmdi zmdi-view-dashboard"></i> <span>View Tutor</span><i class="fa fa-angle-left pull-right"></i>
                     </a>
                 </li>
                 <!-- <li>
@@ -133,7 +132,7 @@ if (isset($_GET["id"])) {
                 <ul class="navbar-nav align-items-center right-nav-link">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                            <span class="user-profile"><img src="" class="img-circle" alt="user avatar"></span>
+                        <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-item user-details">
@@ -229,7 +228,7 @@ if (isset($_GET["id"])) {
                                         if (isset($_GET["id"])) {
                                             $id = $_GET["id"];
                                         }
-                                        $sql = "Select * from meeting where tutor = ". $id;
+                                        $sql = "Select * from meeting where tutor = " . $id;
                                         $rows = query($sql);
                                         for ($i = 0; $i < count($rows); $i++) {
                                         ?>
@@ -257,7 +256,7 @@ if (isset($_GET["id"])) {
                         <div class="card">
                             <div class="card-header text-uppercase">Multiple Form Uploads</div>
                             <div class="card-body">
-                                <form method="post" enctype="multipart/form-data" action="meetprocess.php?id=<?php echo $id ?>" >
+                                <form method="post" enctype="multipart/form-data" action="meetprocess.php?id=<?php echo $id ?>">
                                     <label>File Upload</label>
                                     <input type="file" name="file">
                                     <hr>
@@ -296,12 +295,12 @@ if (isset($_GET["id"])) {
         <footer class="footer">
             <div class="container">
                 <div class="text-center">
-                    
+
                     Chúc mừng bạn có username là <?php echo $_SESSION['username'];  ?> đã đăng nhập thành công !
                     <?php
                     echo "Bây giờ là " . date("Y-m-d H:i");
                     ?>
-                    
+
                 </div>
             </div>
         </footer>
