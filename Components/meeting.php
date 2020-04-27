@@ -228,16 +228,16 @@ if (!isset($_SESSION['username'])) {
                                         </thead>
                                         <?php
                                         require_once './database.php';
-                                        $sql = "Select * from meeting";
+                                        $sql = "SELECT meeting.meetingId, meeting.meetingDate, meeting.meetingTitle,student.studentName, tutor.tutorName, meeting.note, meeting.location FROM meeting INNER JOIN student ON student.accountId = meeting.student INNER JOIN tutor ON tutor.accountId = meeting.tutor";
                                         $rows = query($sql);
                                         for ($i = 0; $i < count($rows); $i++) {
                                         ?>
                                             <div>
                                                 <tr>
                                                     <td class="column1"><?= $rows[$i][0] ?></td>
-                                                    <td class="column2"><?= $rows[$i][4] ?></td>
+                                                    <td class="column2"><?= $rows[$i][2] ?></td>
                                                     <td class="column3"><?= $rows[$i][1] ?></td>
-                                                    <td class="column4"><?= $rows[$i][2] ?></td>
+                                                    <td class="column4"><?= $rows[$i][4] ?></td>
                                                     <td class="column4"><?= $rows[$i][3] ?></td>
                                                 </tr>
                                             </div>

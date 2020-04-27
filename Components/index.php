@@ -199,8 +199,8 @@ if (!isset($_SESSION['username'])) {
         </div>
 
         <!-- test -->
-        <div class="row">
-          <div class="col-lg-6">
+        <div class="row ">
+          <div class="col-lg-8">
             <div class="card">
               <div class="card-header text-uppercase">Create</div>
               <div class="card-body">
@@ -279,6 +279,8 @@ if (!isset($_SESSION['username'])) {
           </div>
         </div>
 
+
+        
         <!--End Row-->
         <!--start overlay-->
         <div class="overlay toggle-menu"></div>

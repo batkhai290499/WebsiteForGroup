@@ -118,7 +118,7 @@ if (!isset($_SESSION['username'])) {
         <ul class="navbar-nav align-items-center right-nav-link">
           <li class="nav-item">
             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-              <span class="user-profile"><img src="" class="img-circle" alt="user avatar"></span>
+            <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item user-details">
@@ -222,8 +222,8 @@ if (!isset($_SESSION['username'])) {
                           <td class="column3">
                             <p><a href="../isTutor/file/<?= $rows[$i][2] ?>">download</a></p>
                           </td>
-                          <td class="column4"><?= $rows[$i][3] ?></td>
-                          <td class="column5"><?= $rows[$i][4] ?></td>
+                          <td class="column4"><?= $rows[$i][4] ?></td>
+                          <td class="column5"><?= $rows[$i][3] ?></td>
                         </tr>
                       </div>
                     <?php
