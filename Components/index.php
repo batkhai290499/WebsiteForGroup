@@ -204,7 +204,7 @@ if (!isset($_SESSION['username'])) {
             <div class="card">
               <div class="card-header text-uppercase">Create</div>
               <div class="card-body">
-                <form method="post">
+                <form method="post" action="sendmail.php">
                   <thead>
 
                     <div class="form-group">
@@ -256,7 +256,7 @@ if (!isset($_SESSION['username'])) {
                   $server_pass = '';
                   $connect = mysqli_connect($sever, $server_user, $server_pass, $database);
                   if (isset($_POST["crete"])) {
-
+                    
                     $groupName = $_POST["groupName"];
                     $tutorGroup = $_POST["tutorGroup"];
                     $studentGroup = $_POST["studentGroup"];
