@@ -8,6 +8,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 //Create instance of PHPMailer
+
+//connect
 $sever = 'localhost';
 $server_user = 'root';
 $database = 'web';

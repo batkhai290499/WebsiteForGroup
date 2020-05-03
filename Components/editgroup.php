@@ -223,8 +223,8 @@ if (isset($_GET["id"])) {
                                                     <input type="text" name=groupName class="form-control form-control-single" id="input-6" value="<?= $rows[$i][1] ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="input-6">Student</label>
-                                                    <input type="text" name=student class="form-control form-control-single" id="input-6" value="<?= $rows[$i][2] ?>" disabled>
+                                                    <label for="input-7">Student</label>
+                                                    <input type="text" name=student class="form-control form-control-single" id="input-7" value="<?= $rows[$i][2] ?>" disabled>
                                                 </div>
 
                                                 <div class="form-group">
