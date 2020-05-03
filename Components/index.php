@@ -200,7 +200,7 @@ if (!isset($_SESSION['username'])) {
 
         <!-- test -->
         <div class="row ">
-          <div class="col-lg-8">
+          <div class="col-lg-6">
             <div class="card">
               <div class="card-header text-uppercase">Create</div>
               <div class="card-body">
@@ -222,7 +222,7 @@ if (!isset($_SESSION['username'])) {
                         for ($i = 0; $i < count($rows); $i++) {
                         ?>
                           <div>
-                            <option value="<?= $rows[$i][0] ?>"><?= $rows[$i][1] ?></option>
+                            <option value="<?= $rows[$i][7] ?>"><?= $rows[$i][1] ?></option>
                           </div>
                         <?php
                         }
@@ -240,7 +240,7 @@ if (!isset($_SESSION['username'])) {
                         for ($i = 0; $i < count($rows); $i++) {
                         ?>
                           <div>
-                            <option value="<?= $rows[$i][0] ?>"><?= $rows[$i][1] ?></option>
+                            <option value="<?= $rows[$i][7] ?>"><?= $rows[$i][1] ?></option>
                           </div>
                         <?php
                         }
@@ -249,38 +249,51 @@ if (!isset($_SESSION['username'])) {
                     </div>
                     <button type="submit" name="crete" class="btn btn-light btn-round px-5"><i class="icon-circle"></i> Create</button>
                   </thead>
-                  <?php
-                  $sever = 'localhost';
-                  $server_user = 'root';
-                  $database = 'web';
-                  $server_pass = '';
-                  $connect = mysqli_connect($sever, $server_user, $server_pass, $database);
-                  if (isset($_POST["crete"])) {
-                    
-                    $groupName = $_POST["groupName"];
-                    $tutorGroup = $_POST["tutorGroup"];
-                    $studentGroup = $_POST["studentGroup"];
 
-                    if ($groupName == "" || $tutorGroup == "" || $studentGroup == "") {
-                      echo "Please fill the blank!";
-                    } else {
-
-                      foreach ($studentGroup as $stu) {
-                        //echo $stu;
-                        $sql = "INSERT INTO `group1`(`groupName`, `studentGroup`, `tutorGroup`) VALUES ('$groupName', '$stu', '$tutorGroup')";
-                        mysqli_query($connect, $sql);
-                      }
-                    }
-                  }
-                  ?>
                 </form>
               </div>
             </div>
           </div>
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">List Group</h5>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Group Name</th>
+                        <th scope="col">Student</th>
+                        <th scope="col">Tutor</th>
+                        <th scope="col">Function</th>
+
+                      </tr>
+                    </thead>
+                    <?php
+                    require_once './database.php';
+                    $sql = "SELECT group1.groupId, group1.groupName ,student.studentName, tutor.tutorName, group1.studentId FROM group1 INNER JOIN student ON student.accountId = group1.studentId INNER JOIN tutor ON tutor.accountId = group1.tutorId";
+                    $rows = query($sql);
+                    for ($i = 0; $i < count($rows); $i++) {
+                    ?>
+                      <div>
+                        <tr>
+                          <td class="column1"><?= $rows[$i][1] ?></td>
+                          <td class="column2"><?= $rows[$i][2] ?></td>
+                          <td class="column3"><?= $rows[$i][3] ?></td>
+                          <td class="column3"><a href="editgroup.php?id=<?= $rows[$i][4] ?>">Edit</a></td>
+                        </tr>
+                      </div>
+                    <?php
+                    }
+                    ?>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-
         
+
         <!--End Row-->
         <!--start overlay-->
         <div class="overlay toggle-menu"></div>
