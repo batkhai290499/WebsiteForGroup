@@ -118,7 +118,7 @@ if (!isset($_SESSION['username'])) {
         <ul class="navbar-nav align-items-center right-nav-link">
           <li class="nav-item">
             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-            <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
+              <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item user-details">
@@ -192,6 +192,67 @@ if (!isset($_SESSION['username'])) {
           </div>
         </div>
 
+        <div class="card mt-3">
+          <div class="card-content">
+            <div class="row row-group m-0">
+              <?php
+              require_once '../database.php';
+              $sql = " SELECT COUNT(student) FROM file AS `countFile` WHERE student =" . $_SESSION['accountID'];
+              $rows = query($sql);
+              for ($i = 0; $i < count($rows); $i++) {
+              ?>
+                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                  <div class="card-body">
+                    <h5 class="text-white mb-0"><?= $rows[$i][0] ?><span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                      <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                    <p class="mb-0 text-white small-font">Total File <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                  </div>
+                </div>
+              <?php
+              }
+              ?>
+              <?php
+              require_once '../database.php';
+              $sql = " SELECT COUNT(messTo) FROM `message` AS `countMess` WHERE messTo =" . $_SESSION['accountID'];
+              $rows = query($sql);
+              for ($i = 0; $i < count($rows); $i++) {
+              ?>
+                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                  <div class="card-body">
+                    <h5 class="text-white mb-0"><?= $rows[$i][0] ?><span class="float-right"><i class="fa fa-usd"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                      <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                    <p class="mb-0 text-white small-font">Total Mess <span class="float-right">+1.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                  </div>
+                </div>
+              <?php
+              }
+              ?>
+
+              <?php
+              require_once '../database.php';
+              $sql = " SELECT COUNT(student) FROM meeting AS `countMeet` WHERE student =" . $_SESSION['accountID'];
+              $rows = query($sql);
+              for ($i = 0; $i < count($rows); $i++) {
+              ?>
+                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                  <div class="card-body">
+                    <h5 class="text-white mb-0"><?= $rows[$i][0] ?><span class="float-right"><i class="fa fa-eye"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                      <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                    <p class="mb-0 text-white small-font">Total Meeting<span class="float-right">+5.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                  </div>
+                </div>
+              <?php
+              }
+              ?>
+            </div>
+          </div>
+        </div>
         <!-- test -->
         <div class="row">
           <div class="col-lg-8">
@@ -211,7 +272,7 @@ if (!isset($_SESSION['username'])) {
                     </thead>
                     <?php
                     require_once '../database.php';
-                    $sql = "SELECT file.fileId, file.fileName , file.location,account.username, file.comment FROM file INNER JOIN account ON account.accountId = file.student where student = " . $_SESSION['accountID'];
+                    $sql = "SELECT file.fileId, file.fileName ,file.location,account.username, file.comment FROM file INNER JOIN account ON account.accountId = file.tutor where student = " . $_SESSION['accountID'];
                     $rows = query($sql);
                     for ($i = 0; $i < count($rows); $i++) {
                     ?>
@@ -222,8 +283,8 @@ if (!isset($_SESSION['username'])) {
                           <td class="column3">
                             <p><a href="../isTutor/file/<?= $rows[$i][2] ?>">download</a></p>
                           </td>
-                          <td class="column4"><?= $rows[$i][4] ?></td>
-                          <td class="column5"><?= $rows[$i][3] ?></td>
+                          <td class="column4"><?= $rows[$i][3] ?></td>
+                          <td class="column5"><?= $rows[$i][4] ?></td>
                         </tr>
                       </div>
                     <?php

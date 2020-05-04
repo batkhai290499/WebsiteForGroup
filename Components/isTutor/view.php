@@ -215,6 +215,7 @@ if (!isset($_SESSION['username'])) {
                                                 <th scope="col">Student</th>
                                                 <th scope="col">Comment</th>
                                                 <th scope="col">Delete</th>
+                                                <th scope="col">Comment</th>
                                             </tr>
                                         </thead>
                                         <?php
@@ -233,6 +234,8 @@ if (!isset($_SESSION['username'])) {
                                                     <td class="column3"><?= $rows[$i][3] ?></td>
                                                     <td class="column3"><?= $rows[$i][4] ?></td>
                                                     <td class="column3"><a href="deleteprocess.php?id=<?= $rows[$i][0] ?>">Delete</a></td>
+                                                    <td class="column3"><a href="edit.php?id=<?= $rows[$i][0] ?>">Edit</a></td>
+
                                                 </tr>
                                             </div>
                                         <?php
