@@ -15,19 +15,19 @@ if(!$con){
 	if(mysqli_num_rows($sql) > 0){
 
 		$row = mysqli_fetch_array($sql, MYSQLI_ASSOC );
- 		if ($row['roleID'] == 1) {
+ 		if ($row['roleID'] === '1') {
 			$_SESSION['accountID'] = $row['accountID'];
 			$_SESSION['username'] = $row['username'];
 			$_SESSION['studentID'] = $row['studentID'];
  			header("location: ../isStudent/view.php");
  		} 
- 		else if($row['roleID'] == 2){
+ 		else if($row['roleID'] === '2'){
 			$_SESSION['accountID'] = $row['accountID'];
 			$_SESSION['username'] = $row['username'];
 			
  			header("location:../index.php");
  		}
- 		else if($row['roleID'] == 3){
+ 		else if($row['roleID'] === '3'){
 			$_SESSION['accountID'] = $row['accountID'];
 			$_SESSION['username'] = $row['username'];
 			$_SESSION['tutorId'] = $row['tutorId'];

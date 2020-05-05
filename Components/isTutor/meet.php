@@ -268,12 +268,12 @@ if (!isset($_SESSION['username'])) {
                                                     <select name="studentGroup[]" class="form-control multiple-select " multiple="multiple">
                                                         <?php
                                                         require_once '../database.php';
-                                                        $sql = "Select * from group1 where tutorId =" . $_SESSION["accountID"];
+                                                        $sql = "SELECT student.accountId, student.studentName FROM group1 INNER JOIN student ON group1.studentId = student.accountID where tutorId =" . $_SESSION["accountID"];
                                                         $rows = query($sql);
                                                         for ($i = 0; $i < count($rows); $i++) {
                                                         ?>
                                                             <div>
-                                                                <option value="<?= $rows[$i][2] ?>"><?= $rows[$i][2] ?></option>
+                                                                <option value="<?= $rows[$i][0] ?>"><?= $rows[$i][1] ?></option>
                                                             </div>
                                                         <?php
                                                         }

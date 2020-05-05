@@ -13,7 +13,7 @@ if (isset($_POST["meetnow"])) {
     $studentGroup = $_POST["studentGroup"];
     $tutor = $_SESSION["accountID"];
 
-    if ($title == "" || $studentGroup == "" || $time == "") {
+    if ($title == "" || $studentGroup == "" || $time == ""|| $tutor == "") {
         echo "Please fill the blank!";
     } else {
         foreach ($studentGroup as $stu) {

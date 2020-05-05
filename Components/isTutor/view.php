@@ -126,7 +126,7 @@ if (!isset($_SESSION['username'])) {
                 <ul class="navbar-nav align-items-center right-nav-link">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                        <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
+                            <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-item user-details">
@@ -200,6 +200,67 @@ if (!isset($_SESSION['username'])) {
                     </div>
                 </div>
                 <!-- test -->
+                <div class="card mt-3">
+                    <div class="card-content">
+                        <div class="row row-group m-0">
+                            <?php
+                            require_once '../database.php';
+                            $sql = " SELECT COUNT(student) FROM file AS `countFile` WHERE tutor =" . $_SESSION['accountID'];
+                            $rows = query($sql);
+                            for ($i = 0; $i < count($rows); $i++) {
+                            ?>
+                                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                                    <div class="card-body">
+                                        <h5 class="text-white mb-0"><?= $rows[$i][0] ?><span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
+                                        <div class="progress my-3" style="height:3px;">
+                                            <div class="progress-bar" style="width:55%"></div>
+                                        </div>
+                                        <p class="mb-0 text-white small-font">Total File <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            require_once '../database.php';
+                            $sql = " SELECT COUNT(messTo) FROM `message` AS `countMess` WHERE messTo =" . $_SESSION['accountID'];
+                            $rows = query($sql);
+                            for ($i = 0; $i < count($rows); $i++) {
+                            ?>
+                                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                                    <div class="card-body">
+                                        <h5 class="text-white mb-0"><?= $rows[$i][0] ?><span class="float-right"><i class="fa fa-usd"></i></span></h5>
+                                        <div class="progress my-3" style="height:3px;">
+                                            <div class="progress-bar" style="width:55%"></div>
+                                        </div>
+                                        <p class="mb-0 text-white small-font">Total Mess <span class="float-right">+1.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                            ?>
+
+                            <?php
+                            require_once '../database.php';
+                            $sql = " SELECT COUNT(student) FROM meeting AS `countMeet` WHERE tutor =" . $_SESSION['accountID'];
+                            $rows = query($sql);
+                            for ($i = 0; $i < count($rows); $i++) {
+                            ?>
+                                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                                    <div class="card-body">
+                                        <h5 class="text-white mb-0"><?= $rows[$i][0] ?><span class="float-right"><i class="fa fa-eye"></i></span></h5>
+                                        <div class="progress my-3" style="height:3px;">
+                                            <div class="progress-bar" style="width:55%"></div>
+                                        </div>
+                                        <p class="mb-0 text-white small-font">Total Meeting<span class="float-right">+5.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="card">
@@ -250,7 +311,7 @@ if (!isset($_SESSION['username'])) {
                         <div class="card">
                             <div class="card-header text-uppercase">Multiple Form Uploads</div>
                             <div class="card-body">
-                                <form method="post" enctype="multipart/form-data" action="view.php">
+                                <form method="post" enctype="multipart/form-data" action="upfile.php">
                                     <label>Title</label>
                                     <input type="text" name="fileName">
                                     <label>File Upload</label>
@@ -260,12 +321,12 @@ if (!isset($_SESSION['username'])) {
                                         <select name="studentGroup[]" class="form-control multiple-select" multiple="multiple">
                                             <?php
                                             require_once '../database.php';
-                                            $sql = "Select * from group1 where tutorId = " . $_SESSION['accountID'];
+                                            $sql = "SELECT student.accountId, student.studentName FROM group1 INNER JOIN student ON group1.studentId = student.accountID where tutorId = " . $_SESSION['accountID'];
                                             $rows = query($sql);
                                             for ($i = 0; $i < count($rows); $i++) {
                                             ?>
                                                 <div>
-                                                    <option value="<?= $rows[$i][2] ?>"><?= $rows[$i][2] ?></option>
+                                                    <option value="<?= $rows[$i][0] ?>"><?= $rows[$i][1] ?></option>
                                                 </div>
                                             <?php
                                             }
@@ -276,50 +337,7 @@ if (!isset($_SESSION['username'])) {
                                     <input type="text" name="comment">
                                     <input type="submit" name="submit" value="Upload">
                                 </form>
-                                <?php
-                                $localhost = "localhost"; #localhost
-                                $dbusername = "root"; #username of phpmyadmin
-                                $dbpassword = "";  #password of phpmyadmin
-                                $dbname = "web";  #database name
-
-                                #connection string
-                                $conn = mysqli_connect($localhost, $dbusername, $dbpassword, $dbname);
-
-                                if (isset($_POST["submit"])) {
-                                    #retrieve file title
-                                    $fileName = $_POST["fileName"];
-                                    $studentGroup = $_POST["studentGroup"];
-                                    $tutor = $_SESSION['accountID'];
-                                    $comment = $_POST['comment'];
-
-                                    #file name with a random number so that similar dont get replaced
-                                    $pname = $_FILES["file"]["name"];
-
-                                    #temporary file name to store file
-                                    $tname = $_FILES["file"]["tmp_name"];
-
-                                    #upload directory path
-                                    $uploads_dir = 'file';
-                                    #TO move the uploaded file to specific location
-                                    move_uploaded_file($tname, $uploads_dir . '/' . $pname);
-
-                                    // $st = "file/" .$_FILES["file"]["name"];
-                                    // echo $st;
-                                    // echo "<a href='$st'>download</a>"; 
-                                    #sql query to insert into database
-                                    //$sql = "INSERT into file(title,image) VALUES('$title','$pname')";
-                                    foreach ($studentGroup as $stu) {
-                                        $sql = "INSERT INTO `file`(`fileName`, `location`, `tutor`, `student`, `comment`) VALUES ( '$fileName', '$pname', $tutor,  $stu, '$comment')";
-                                        // echo $fileName . "-";
-                                        // echo $tutor . "-";
-                                        // echo $pname . "-";
-                                        // echo $stu . "-";
-                                        // echo $comment . "-";
-                                        //echo $sql;
-                                        mysqli_query($conn, $sql);
-                                    }
-                                }
-                                ?>
+                                
                             </div>
                         </div>
                     </div>
