@@ -1,1 +1,2 @@
-<?php echo "1" ?>
+<?php     header('Location: ../Components/isLogin/login.php');
+ ?>
