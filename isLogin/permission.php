@@ -1,8 +1,18 @@
 <?php  
-		// $pdo = new PDO('pgsql:host=localhost;port=5432;dbname=GWCourses', 'postgres', '');
-		// echo "done";
+$con = mysqli_connect('localhost', 'root', '','web');
+if(!$con){
+	die('Could not connect: '.mysqli_connect_errno());
+}
+session_start();
 
-		$db = parse_url(getenv("DATABASE_URL"));
+function get_user($username, $password){
+$con = mysqli_connect('localhost', 'root', '','web');
+if(!$con){
+	die('Could not connect: '.mysqli_connect_errno());
+}
+	$sql = mysqli_query($con,"SELECT * FROM account WHERE username= '$username' AND password= '$password' ");
+	$pdo = new PDO('pgsql:host=localhost;port=5432;dbname=GWCourses', 'postgres', '');
+	$db = parse_url(getenv("DATABASE_URL"));
 		$pdo = new PDO("pgsql:" . sprintf(
 		    "host=%s;port=%s;user=%s;password=%s;dbname=%s",
 		    $db["host"],
@@ -11,17 +21,11 @@
 		    $db["pass"],
 		    ltrim($db["path"], "/")
 		));
-		
-
-
-		$sql = "SELECT * FROM registercourse";
 		$stmt = $pdo->prepare($sql);
 		//Thiết lập kiểu dữ liệu trả về
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
 		$stmt->execute();
 		$resultSet = $stmt->fetchAll();
-	$sql = mysqli_query($con,"SELECT * FROM account WHERE username= '$username' AND password= '$password' ");
-		
 	if(mysqli_num_rows($sql) > 0){
 
 		$row = mysqli_fetch_array($sql, MYSQLI_ASSOC );
@@ -46,5 +50,4 @@
 	} else{
 		echo "<script> alert('Please log in again')</script>";
 	}
-
-
+}
