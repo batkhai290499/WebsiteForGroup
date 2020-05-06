@@ -16,7 +16,13 @@ if (isset($_POST["send"])) {
         $time = date("Y-m-d H:i:s");
 
         if ($messContent == "") {
-            echo "Please fill the blank!";
+            echo "<script>
+            if (confirm('please fill the blank?') == true) {
+               window.location='view.php';
+           }else {
+               window.location='view.php';
+           }
+           </script>";
         } else {
             $sql = "INSERT INTO `message`(`messTo`, `messFrom`, `messContent`, `time`) VALUES ( $messTutor, $messStu, '$messContent','$time')";
             echo $sql;

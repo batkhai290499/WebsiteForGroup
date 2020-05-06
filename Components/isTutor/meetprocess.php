@@ -14,7 +14,13 @@ if (isset($_POST["meetnow"])) {
     $tutor = $_SESSION["accountID"];
 
     if ($title == "" || $studentGroup == "" || $time == ""|| $tutor == "") {
-        echo "Please fill the blank!";
+        echo "<script>
+        if (confirm('please fill the blank?') == true) {
+           window.location='view.php';
+       }else {
+           window.location='view.php';
+       }
+       </script>";
     } else {
         foreach ($studentGroup as $stu) {
             //echo $stu;

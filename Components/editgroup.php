@@ -18,7 +18,7 @@ if (isset($_GET["id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashtreme - Multipurpose Bootstrap4 Admin Template</title>
+    <title>eTutor</title>
     <!--favicon-->
     <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
 
@@ -69,7 +69,7 @@ if (isset($_GET["id"])) {
             <div class="brand-logo">
                 <a href="index.php">
                     <img src="../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-                    <h5 class="logo-text">Dashtreme Admin</h5>
+                    <h5 class="logo-text">eTutor</h5>
                 </a>
             </div>
             <ul class="sidebar-menu">
@@ -236,14 +236,14 @@ if (isset($_GET["id"])) {
                                                         for ($i = 0; $i < count($rows1); $i++) {
                                                         ?>
                                                             <div>
-                                                                <option value="<?= $rows1[$i][7] ?>" ><?= $rows1[$i][1] ?></option>
+                                                                <option value="<?= $rows1[$i][7] ?>"><?= $rows1[$i][1] ?></option>
                                                             </div>
                                                         <?php
                                                         }
                                                         ?>
                                                     </select>
                                                 </div>
-                                                
+
                                                 <button type="submit" name="edit" class="btn btn-light btn-round px-5"><i class="icon-circle"></i>Save</button>
                                             </div>
                                         <?php
@@ -313,7 +313,7 @@ if (isset($_GET["id"])) {
         <footer class="footer">
             <div class="container">
                 <div class="text-center">
-                    Chúc mừng bạn có username là <?php echo $_SESSION['username'];  ?> đã đăng nhập thành công !
+                    You are <?php echo $_SESSION['username'];  ?> have been loggin success !
                 </div>
             </div>
         </footer>

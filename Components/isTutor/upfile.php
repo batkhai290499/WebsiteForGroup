@@ -32,7 +32,13 @@ if (isset($_POST["submit"])) {
     #sql query to insert into database
     //$sql = "INSERT into file(title,image) VALUES('$title','$pname')";
     if ($fileName == "" || $studentGroup == "" || $comment == "" || $tutor == "") {
-        echo "Please fill the blank!";
+        echo "<script>
+         if (confirm('please fill the blank?') == true) {
+            window.location='view.php';
+        }else {
+            window.location='view.php';
+        }
+        </script>";
     } else {
         foreach ($studentGroup as $stu) {
             $sql = "INSERT INTO `file`(`fileName`, `location`, `tutor`, `student`, `comment`) VALUES ( '$fileName', '$pname', $tutor,  $stu, '$comment')";

@@ -17,7 +17,7 @@ if (!isset($_SESSION['username'])) {
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Dashtreme - Multipurpose Bootstrap4 Admin Template</title>
+    <title>eTutor</title>
     <!--favicon-->
     <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
 
@@ -70,7 +70,7 @@ if (!isset($_SESSION['username'])) {
             <div class="brand-logo">
                 <a href="index.html">
                     <img src="../../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-                    <h5 class="logo-text">Dashtreme Admin</h5>
+                    <h5 class="logo-text">eTutor</h5>
                 </a>
             </div>
             <ul class="sidebar-menu">
@@ -126,7 +126,7 @@ if (!isset($_SESSION['username'])) {
                 <ul class="navbar-nav align-items-center right-nav-link">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                        <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
+                            <span class="user-profile"><img src="https://via.placeholder.com/150" class="img-circle" alt="user avatar"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-item user-details">
@@ -275,10 +275,7 @@ if (!isset($_SESSION['username'])) {
         <footer class="footer">
             <div class="container">
                 <div class="text-center">
-                    Chúc mừng bạn có username là <?php echo $_SESSION['username'];  ?> đã đăng nhập thành công !
-                    <?php
-                    echo "Bây giờ là " . date("Y-m-d H:i:s");
-                    ?>
+                    You are <?php echo $_SESSION['username'];  ?> have been loggin success !
                 </div>
             </div>
         </footer>

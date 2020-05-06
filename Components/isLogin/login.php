@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
+	<title>eTutor </title>
 	<!-- loader-->
 	<link href="../../assets/css/pace.min.css" rel="stylesheet" />
 	<script src="../../assets/js/pace.min.js"></script>

@@ -80,7 +80,7 @@ if (isset($_POST["crete"])) {
 			$sql = "INSERT INTO `group1`(`groupName`, `studentId`, `tutorId`) VALUES ('$groupName', '$stu', '$tutorGroup')";
 			echo $sql;
 			mysqli_query($connect, $sql);
-			header('Location: index.php');
+			//header('Location: index.php');
 		}
 	}
 }

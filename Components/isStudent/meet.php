@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Dashtreme - Multipurpose Bootstrap4 Admin Template</title>
+    <title>eTutor</title>
     <!--favicon-->
     <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../assets/plugins/summernote/dist/summernote-bs4.css" />
@@ -76,7 +76,7 @@ if (isset($_GET["id"])) {
             <div class="brand-logo">
                 <a href="view.php">
                     <img src="../../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-                    <h5 class="logo-text">Dashtreme Admin</h5>
+                    <h5 class="logo-text">eTutor</h5>
                 </a>
             </div>
             <ul class="sidebar-menu">
@@ -296,10 +296,7 @@ if (isset($_GET["id"])) {
             <div class="container">
                 <div class="text-center">
 
-                    Chúc mừng bạn có username là <?php echo $_SESSION['username'];  ?> đã đăng nhập thành công !
-                    <?php
-                    echo "Bây giờ là " . date("Y-m-d H:i");
-                    ?>
+                You are <?php echo $_SESSION['username'];  ?> have been loggin success !
 
                 </div>
             </div>
