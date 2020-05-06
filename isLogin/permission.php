@@ -23,7 +23,7 @@ if(!$con){
 		$resultSet = $stmt->fetchAll();
 	if(mysqli_num_rows($sql) > 0){
 
-		$row = mysqli_fetch_array($sql, MYSQLI_ASSOC );
+		$row = mysqli_fetch_array($stmt, MYSQLI_ASSOC );
  		if ($row['roleID'] === '1') {
 			$_SESSION['accountID'] = $row['accountID'];
 			$_SESSION['username'] = $row['username'];
