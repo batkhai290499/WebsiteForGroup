@@ -1,26 +1,17 @@
 <?php  
-session_start();
-
-function get_user($username, $password){
-$con = new PDO('pgsql:host=localhost;port=5432;dbname=khainb', 'postgres', '');
+$con = mysqli_connect('localhost', 'root', '','web');
 if(!$con){
 	die('Could not connect: '.mysqli_connect_errno());
 }
-	$sql = "SELECT * FROM account WHERE username= '$username' AND password= '$password'";
-	$db = parse_url(getenv("DATABASE_URL"));
-		$pdo = new PDO("pgsql:" . sprintf(
-		    "host=%s;port=%s;user=%s;password=%s;dbname=%s",
-		    $db["host"],
-		    $db["port"],
-		    $db["user"],
-		    $db["pass"],
-		    ltrim($db["path"], "/")
-		));
-		$stmt = $pdo->prepare($sql);
-		//Thiết lập kiểu dữ liệu trả về
-		$stmt->setFetchMode(PDO::FETCH_ASSOC);
-		$stmt->execute();
-		$resultSet = $stmt->fetchAll();
+session_start();
+
+function get_user($username, $password){
+$con = mysqli_connect('localhost', 'root', '','web');
+if(!$con){
+	die('Could not connect: '.mysqli_connect_errno());
+}
+	$sql = mysqli_query($con,"SELECT * FROM account WHERE username= '$username' AND password= '$password' ");
+		
 	if(mysqli_num_rows($sql) > 0){
 
 		$row = mysqli_fetch_array($sql, MYSQLI_ASSOC );
