@@ -6,7 +6,7 @@ $con = new PDO('pgsql:host=localhost;port=5432;dbname=khainb', 'postgres', '');
 if(!$con){
 	die('Could not connect: '.mysqli_connect_errno());
 }
-	$sql = mysqli_query($con,"SELECT * FROM account WHERE username= '$username' AND password= '$password' ");
+	$sql = "SELECT * FROM account WHERE username= '$username' AND password= '$password'";
 	$db = parse_url(getenv("DATABASE_URL"));
 		$pdo = new PDO("pgsql:" . sprintf(
 		    "host=%s;port=%s;user=%s;password=%s;dbname=%s",
@@ -23,7 +23,7 @@ if(!$con){
 		$resultSet = $stmt->fetchAll();
 	if(mysqli_num_rows($sql) > 0){
 
-		$row = mysqli_fetch_array($resultSet, MYSQLI_ASSOC );
+		$row = mysqli_fetch_array($sql, MYSQLI_ASSOC );
  		if ($row['roleID'] === '1') {
 			$_SESSION['accountID'] = $row['accountID'];
 			$_SESSION['username'] = $row['username'];
