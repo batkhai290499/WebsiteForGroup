@@ -1,17 +1,12 @@
 <?php  
-$con = mysqli_connect('localhost', 'root', '','web');
-if(!$con){
-	die('Could not connect: '.mysqli_connect_errno());
-}
 session_start();
 
 function get_user($username, $password){
-$con = mysqli_connect('localhost', 'root', '','web');
+$con = new PDO('pgsql:host=localhost;port=5432;dbname=khainb', 'postgres', '');
 if(!$con){
 	die('Could not connect: '.mysqli_connect_errno());
 }
 	$sql = mysqli_query($con,"SELECT * FROM account WHERE username= '$username' AND password= '$password' ");
-	$pdo = new PDO('pgsql:host=localhost;port=5432;dbname=GWCourses', 'postgres', '');
 	$db = parse_url(getenv("DATABASE_URL"));
 		$pdo = new PDO("pgsql:" . sprintf(
 		    "host=%s;port=%s;user=%s;password=%s;dbname=%s",
