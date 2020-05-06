@@ -1,2 +1,2 @@
-<?php     header('Location: ./Components/isLogin/login.php');
+<?php echo 'HelloWorld';
  ?>
