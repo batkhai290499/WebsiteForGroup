@@ -261,7 +261,7 @@ if (isset($_GET["id"])) {
                                     <input type="file" name="file">
                                     <hr>
                                     <div class="form-group">
-                                        <label>Note Something you fucking need</label>
+                                        <label>Note Something you need</label>
                                         <div class="form-group">
                                             <textarea class="form-control" id="summernoteEditor" placeholder="Message body" style="height: 200px" name="note"></textarea>
                                         </div>
