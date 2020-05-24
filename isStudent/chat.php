@@ -19,33 +19,33 @@ if (!isset($_SESSION['username'])) {
 
     <title>eTutor</title>
     <!--favicon-->
-    <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
 
     <!--Select Plugins-->
-    <link href="../../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
     <!--inputtags-->
-    <link href="../../assets/plugins/inputtags/css/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="../assets/plugins/inputtags/css/bootstrap-tagsinput.css" rel="stylesheet" />
     <!--multi select-->
-    <link href="../../assets/plugins/jquery-multi-select/multi-select.css" rel="stylesheet" type="text/css">
+    <link href="../assets/plugins/jquery-multi-select/multi-select.css" rel="stylesheet" type="text/css">
     <!--Bootstrap Datepicker-->
-    <link href="../../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
     <!--Touchspin-->
-    <link href="../../assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css">
+    <link href="../assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css">
 
     <!-- simplebar CSS-->
-    <link href="../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <link href="../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <!-- Bootstrap core CSS-->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <!-- animate CSS-->
-    <link href="../../assets/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/animate.css" rel="stylesheet" type="text/css" />
     <!-- Icons CSS-->
-    <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/icons.css" rel="stylesheet" type="text/css" />
     <!-- Sidebar CSS-->
-    <link href="../../assets/css/sidebar-menu.css" rel="stylesheet" />
+    <link href="../assets/css/sidebar-menu.css" rel="stylesheet" />
     <!-- Custom Style-->
-    <link href="../../assets/css/app-style.css" rel="stylesheet" />
+    <link href="../assets/css/app-style.css" rel="stylesheet" />
     <!-- Dropzone css -->
-    <link href="../../assets/plugins/dropzone/css/dropzone1.css" rel="stylesheet" type="text/css">
+    <link href="../assets/plugins/dropzone/css/dropzone1.css" rel="stylesheet" type="text/css">
     <link href="./tem.css" rel="stylesheet" />
 </head>
 
@@ -69,7 +69,7 @@ if (!isset($_SESSION['username'])) {
         <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
             <div class="brand-logo">
                 <a href="index.html">
-                    <img src="../../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+                    <img src="../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
                     <h5 class="logo-text">eTutor</h5>
                 </a>
             </div>
@@ -220,7 +220,9 @@ if (!isset($_SESSION['username'])) {
                                     $id = $_GET["id"];
                                     $acc = $_SESSION['accountID'];
                                 }
-                                $sql = "SELECT message.messContent, message.time, account.username FROM message INNER JOIN account ON account.accountId = message.messFrom WHERE messTo IN ($acc,$id) AND messFrom IN ($id,$acc) ORDER BY time ASC";
+                                $sql = "SELECT message.messContent, message.time, account.username FROM message 
+                                INNER JOIN account ON account.accountId = message.messFrom 
+                                WHERE messTo IN ($acc,$id) AND messFrom IN ($id,$acc) ORDER BY time ASC";
                                 //echo $sql;
                                 $rows = query($sql);
                                 for ($i = 0; $i < count($rows); $i++) {
@@ -289,29 +291,29 @@ if (!isset($_SESSION['username'])) {
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../../assets/js/jquery.min.js"></script>
-    <script src="../../assets/js/popper.min.js"></script>
-    <script src="../../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
 
     <!-- simplebar js -->
-    <script src="../../assets/plugins/simplebar/js/simplebar.js"></script>
+    <script src="../assets/plugins/simplebar/js/simplebar.js"></script>
     <!-- sidebar-menu js -->
-    <script src="../../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/sidebar-menu.js"></script>
 
     <!-- Custom scripts -->
-    <script src="../../assets/js/app-script.js"></script>
+    <script src="../assets/js/app-script.js"></script>
 
     <!--Bootstrap Touchspin Js-->
-    <script src="../../assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js"></script>
-    <script src="../../assets/plugins/bootstrap-touchspin/js/bootstrap-touchspin-script.js"></script>
+    <script src="../assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js"></script>
+    <script src="../assets/plugins/bootstrap-touchspin/js/bootstrap-touchspin-script.js"></script>
 
     <!--Select Plugins Js-->
-    <script src="../../assets/plugins/select2/js/select2.min.js"></script>
+    <script src="../assets/plugins/select2/js/select2.min.js"></script>
     <!--Inputtags Js-->
-    <script src="../../assets/plugins/inputtags/js/bootstrap-tagsinput.js"></script>
+    <script src="../assets/plugins/inputtags/js/bootstrap-tagsinput.js"></script>
 
     <!--Bootstrap Datepicker Js-->
-    <script src="../../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
     <script>
         $('#default-datepicker').datepicker({
             todayHighlight: true
@@ -329,8 +331,8 @@ if (!isset($_SESSION['username'])) {
     </script>
 
     <!--Multi Select Js-->
-    <script src="../../assets/plugins/jquery-multi-select/jquery.multi-select.js"></script>
-    <script src="../../assets/plugins/jquery-multi-select/jquery.quicksearch.js"></script>
+    <script src="../assets/plugins/jquery-multi-select/jquery.multi-select.js"></script>
+    <script src="../assets/plugins/jquery-multi-select/jquery.quicksearch.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -477,7 +479,7 @@ if (!isset($_SESSION['username'])) {
         }
     </script>
     <!-- Dropzone JS  -->
-    <script src="../../assets/plugins/dropzone/js/dropzone.js"></script>
+    <script src="../assets/plugins/dropzone/js/dropzone.js"></script>
 
 </body>
 

@@ -1,8 +1,8 @@
 <?php
 //Include required PHPMailer files
-require '../includes/PHPMailer.php';
-require '../includes/SMTP.php';
-require '../includes/Exception.php';
+require 'includes/PHPMailer.php';
+require 'includes/SMTP.php';
+require 'includes/Exception.php';
 //Define name spaces
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;

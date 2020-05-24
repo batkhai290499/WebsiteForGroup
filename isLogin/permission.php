@@ -19,6 +19,7 @@ if(!$con){
 			$_SESSION['accountID'] = $row['accountID'];
 			$_SESSION['username'] = $row['username'];
 			$_SESSION['studentID'] = $row['studentID'];
+			
  			header("location: ../isStudent/view.php");
  		} 
  		else if($row['roleID'] === '2'){

@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
 
     #temporary file name to store file
     $tname = $_FILES["file"]["tmp_name"];
-
+    
     #upload directory path
     $uploads_dir = 'file';
     #TO move the uploaded file to specific location
